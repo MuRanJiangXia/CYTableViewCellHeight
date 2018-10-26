@@ -75,14 +75,14 @@ class CYListTableViewCell: UITableViewCell {
 
         }
  
-//        self.showView.snp.makeConstraints {
-//            $0.top.equalTo(self.contentLab.snp.bottom).offset(10)
-//            $0.left.equalTo(self.contentLab)
-//            $0.width.equalTo(80)
-////            $0.height.equalTo(40)
-//            $0.bottom.equalTo(self.contentView.snp.bottom).offset(-10)
-//
-//        }
+        self.showView.snp.makeConstraints {
+            $0.top.equalTo(self.contentLab.snp.bottom).offset(10)
+            $0.left.equalTo(self.contentLab)
+            $0.width.equalTo(80)
+            $0.height.equalTo(40)
+            $0.bottom.equalTo(self.contentView.snp.bottom).offset(-10)
+
+        }
         
     }
 
@@ -92,38 +92,19 @@ class CYListTableViewCell: UITableViewCell {
 extension CYListTableViewCell {
       func configWithModel(_ model: CYListModel, indexRow: Int) {
         contentLab.text = model.content
-        self.showView.removeFromSuperview()
-        reloadShowView()
+
         if indexRow % 2 == 0 {
-            self.showView.snp.makeConstraints {
+            self.showView.snp.updateConstraints {
                 $0.height.equalTo(100)
             }
         }else {
-            self.showView.snp.makeConstraints {
+            self.showView.snp.updateConstraints {
                 $0.height.equalTo(10)
             }
         }
 
     }
     
-    
-    func reloadShowView() {
-        
-        let showView = UIView(frame: .zero)
-        showView.backgroundColor = UIColor.cyan
-        self.contentView.addSubview(showView)
-        self.showView = showView
-        
-        self.showView.snp.makeConstraints {
-            $0.top.equalTo(self.contentLab.snp.bottom).offset(10)
-            $0.left.equalTo(self.contentLab)
-            $0.width.equalTo(80)
-            //            $0.height.equalTo(40)
-            $0.bottom.equalTo(self.contentView.snp.bottom).offset(-10)
-            
-        }
-        
-    }
 }
 
 
